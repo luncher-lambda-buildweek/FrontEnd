@@ -1,8 +1,4 @@
-import {
-  LOGIN_START,
-  LOGIN_FAILURE,
-  LOGIN_SUCCESS
-} from '../actions/index';
+import { LOGIN_START, LOGIN_FAILURE, LOGIN_SUCCESS } from '../actions/login';
 
 const initialState = {
   error: '',
@@ -15,20 +11,20 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         error: '',
-        loggingIn: true
-      }
+        loggingIn: true,
+      };
     case LOGIN_FAILURE:
       return {
         ...state,
         error: '',
-        loggingIn: false
-      }
+        loggingIn: false,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
         error: '',
-        loggingIn: false
-      }
+        loggingIn: false,
+      };
     default:
       return state;
   }

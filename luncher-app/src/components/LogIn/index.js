@@ -1,21 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../actions/index';
+import PropTypes from 'prop-types';
+import { logIn } from '../../actions/login';
+import { Form, Button, Input } from '../../globals/styles';
 
 class LogIn extends React.Component {
   state = {
     credentials: {
       username: '',
-      password: ''
-    }
+      password: '',
+    },
   };
 
   handleChanges = e => {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
@@ -34,31 +36,40 @@ class LogIn extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.login}>
-          <input
-            type= 'text'
-            name= 'username'
-            placeholder= 'Username'
+        <Form onSubmit={this.login}>
+          <Input
+            type="text"
+            name="username"
+            placeholder="Username"
             onChange={this.handleChanges}
             value={this.state.credentials.username}
           />
-          <input
-            type= 'password'
-            name= 'password'
-            placeholder= 'password'
+          <Input
+            type="password"
+            name="password"
+            placeholder="password"
             onChange={this.handleChanges}
             value={this.state.credentials.password}
           />
-          <button>Log In!</button>
-        </form>
+          <Button>Log In!</Button>
+        </Form>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   error: state.error,
-  loggingIn: state.loggingIn
-})
+  loggingIn: state.loggingIn,
+});
 
-export default connect(mapStateToProps, { logIn } )(LogIn);
+LogIn.propTypes = {
+  error: PropTypes.string,
+  loggingIn: PropTypes.bool,
+  logIn: PropTypes.func
+}
+
+export default connect(
+  mapStateToProps,
+  { logIn },
+)(LogIn);

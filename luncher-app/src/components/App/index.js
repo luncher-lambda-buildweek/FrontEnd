@@ -1,26 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import LogIn from '../logIn';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import LogIn from '../LogIn';
+import SignUp from '../SignUp';
+import Header from '../Header';
+import { MainContainer } from './appStyle';
 
 const App = () => {
   return (
     <Router>
-      <div className='App'>
-        <ul>
-          <li>
-            <Link to='/login'>Log-In</Link>
-          </li>
-          <li>
-            <Link to='/register'>Sign Up</Link>
-          </li>
-        </ul>
-        <Route path="/login" component={LogIn} />
-        {/* <Route path="/" component={} /> */}
-        {/* ^ Left route path and component empty so you can choose the name you prefer for sign up component */}
+      <div>
+        <Header />
+        <MainContainer>
+          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route path="/login" component={LogIn} />
+          <Route path="/register" component={SignUp} />
+        </MainContainer>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
