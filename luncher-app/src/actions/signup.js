@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { HOST_URL } from '../consts/urls';
 
 export const CREATING_ACCOUNT = 'CREATING_ACCOUNT';
 export const ACCOUNT_CREATED = 'ACCOUNT_CREATED';
 export const CREATING_ERROR = 'CREATING_ERROR';
 
 export const signup = newUser => dispatch => {
+  console.log(newUser)
   dispatch({ type: CREATING_ACCOUNT });
   return axios
-    .post('http://localhost:5000/api/register', newUser)
+    .post(`${HOST_URL}/register`, newUser)
     .then(res => {
       dispatch({ type: ACCOUNT_CREATED });
       return true;

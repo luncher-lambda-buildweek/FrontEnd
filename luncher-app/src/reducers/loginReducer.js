@@ -3,6 +3,7 @@ import { LOGIN_START, LOGIN_FAILURE, LOGIN_SUCCESS } from '../actions/login';
 const initialState = {
   error: '',
   loggingIn: false,
+  loggedIn: false,
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         error: '',
         loggingIn: false,
+        loggedIn: true,
       };
     default:
       return state;

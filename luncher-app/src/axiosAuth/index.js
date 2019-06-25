@@ -1,13 +1,13 @@
 import axios from 'axios';
+import { getToken } from '../helpers/localStorage';
 
 export const axiosWithAuth = () => {
-  const token = localStorage.getItem('token');
+  const token = getToken();
 
   return axios.create({
     headers: {
-      Authorization: token
+      Authorization: token,
     },
-    baseURL: ''
+    baseURL: '',
   });
 };
-// baseURL is empty until we get endpoints from Sarah

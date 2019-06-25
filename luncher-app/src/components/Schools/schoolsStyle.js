@@ -8,13 +8,18 @@ export const SchoolsContainer = styled.div`
 `;
 
 export const School = styled.div`
-  width: 290px;
-  height: 150px;
+  width: 22%;
+  min-width: 200px;
+  height: 200px;
   margin: 5px 10px;
   border-radius: 3px;
   border: 1px solid gray;
   padding: 10px;
   position: relative;
+  @media (max-width: 500px) {
+    width: 100%;
+    justify-content: center;
+  }
 
   h4 {
     font-size: ${font.text}
