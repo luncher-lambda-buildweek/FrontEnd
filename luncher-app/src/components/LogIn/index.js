@@ -7,7 +7,7 @@ import { Form, Button, Input } from '../../globals/styles';
 class LogIn extends React.Component {
   state = {
     credentials: {
-      username: '',
+      email: '',
       password: '',
     },
   };
@@ -23,15 +23,15 @@ class LogIn extends React.Component {
 
   // login function commented out until a component has been created that the user will be routed to when log in is successful
 
-  // login = e => {
-  //   e.preventDefault();
-  //   this.props.logIn(this.state.credentials)
-  //   .then(res => {
-  //     if (res) {
-  //       this.props.history.push('/protectedRoute');
-  //     }
-  //   });
-  // };
+  login = e => {
+    e.preventDefault();
+    this.props.logIn(this.state.credentials)
+    .then(res => {
+      // if (res) {
+      //   this.props.history.push('/protectedRoute');
+      // }
+    });
+  };
 
   render() {
     return (

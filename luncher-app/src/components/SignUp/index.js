@@ -29,7 +29,7 @@ class SignUpForm extends Component {
     const notEmpty =
       firstName.trim() && lastName.trim() && email.trim() && password.trim();
     if (notEmpty) {
-      this.props.signup(this.state.newUser).then(res => {
+      this.props.signup({...this.state.newUser}).then(res => {
         console.log(res);
         if (res) {
           this.props.history.push('/login');
