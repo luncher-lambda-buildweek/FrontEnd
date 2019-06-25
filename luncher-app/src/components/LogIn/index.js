@@ -7,7 +7,7 @@ import { Form, Button, Input } from '../../globals/styles';
 class LogIn extends React.Component {
   state = {
     credentials: {
-      username: '',
+      email: '',
       password: '',
     },
   };
