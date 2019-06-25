@@ -4,17 +4,17 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
+`;
 
-  input {
-    width: 70%;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 3px;
-    border: 1px solid lightgray;
+export const Input = styled.input`
+  width: 50%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
 
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: 1px solid lightblue;
   }
 `;
 
