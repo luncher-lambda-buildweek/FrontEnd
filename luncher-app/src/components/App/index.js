@@ -10,6 +10,7 @@ import AddSchoolForm from '../Addschool/index';
 import routes from '../../consts/urls';
 import { loggedIn } from '../../actions/login';
 import { getToken } from '../../helpers/localStorage';
+import { PrivateRoute } from '../PrivateRoute';
 
 class App extends Component {
   componentDidMount() {
@@ -25,10 +26,10 @@ class App extends Component {
         <div>
           <Header />
           <MainContainer>
-            <Route exact path={routes.home} component={Home} />
             <Route path={routes.login} component={LogIn} />
             <Route path={routes.signup} component={SignUp} />
-            <Route path={routes.addSchool} component={AddSchoolForm} />
+            <PrivateRoute exact path={routes.home} component={Home} />
+            <PrivateRoute path={routes.addSchool} component={AddSchoolForm} />
           </MainContainer>
         </div>
       </Router>
