@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { font } from '../../globals/variables';
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -6,13 +7,15 @@ export const HeaderContainer = styled.div`
   position: fixed;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 5px;
+  padding: 20px 10px;
   height: 30px;
 
   a {
     margin: 0;
     color: black;
     text-decoration: none;
+    font-size: ${font.large};
+
   }
 `;
 
@@ -26,5 +29,6 @@ export const NavContainer = styled.div`
     color: black;
     text-decoration: none;
     margin: 0 5px;
+    font-size: ${font.text};
   }
 `;
