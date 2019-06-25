@@ -10,3 +10,4 @@ export const axiosWithAuth = () => {
     baseURL: ''
   });
 };
+// baseURL is empty until we get endpoints from Sarah

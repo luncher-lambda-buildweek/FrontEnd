@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const logIn = creds => (dispatch) => {
     dispatch({ type: LOGIN_START });
     return axiosWithAuth()
+    // Using placeholder endpoint while we get the actual one from Sarah
       .post('/login', creds)
       .then(res => {
         localStorage.setItem('token', res.payload);
