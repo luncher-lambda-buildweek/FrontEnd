@@ -37,3 +37,24 @@ export const Button = styled.button`
     outline: none;
   }
 `;
+
+export const Title = styled.h2`
+  font-size: ${font.medium};
+  margin: 10px 0;
+`;
+
+export const Alert = styled.div`
+  margin: 30px;
+  font-size: ${font.text};
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: lightgray;
+
+  a {
+    color: dodgerblue;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: ${font.text};
+  }
+`;

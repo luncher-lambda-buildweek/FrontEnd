@@ -9,6 +9,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   padding: 20px 10px;
   height: 30px;
+  background-color: white;
 
   a {
     margin: 0;
