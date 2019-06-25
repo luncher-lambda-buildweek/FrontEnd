@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logIn } from '../../actions/login';
-import { Form, Button, Input } from '../../globals/styles';
+import { Form, Button, Input, Title } from '../../globals/styles';
+import routes from '../../consts/urls';
+import { getToken } from '../../helpers/localStorage';
 
 class LogIn extends React.Component {
   state = {
@@ -12,6 +14,13 @@ class LogIn extends React.Component {
     },
   };
 
+  componentDidMount() {
+    const token = getToken();
+    if (token) {
+      this.props.history.push(routes.home);
+    }
+  }
+
   handleChanges = e => {
     this.setState({
       credentials: {
@@ -20,29 +29,27 @@ class LogIn extends React.Component {
       },
     });
   };
-
-  // login function commented out until a component has been created that the user will be routed to when log in is successful
-
+  
   login = e => {
     e.preventDefault();
-    this.props.logIn(this.state.credentials)
-    .then(res => {
-      // if (res) {
-      //   this.props.history.push('/protectedRoute');
-      // }
+    this.props.logIn(this.state.credentials).then(res => {
+      if (res) {
+        this.props.history.push(routes.home);
+      }
     });
   };
 
   render() {
     return (
       <div>
+        <Title>Login</Title>
         <Form onSubmit={this.login}>
           <Input
             type="text"
-            name="username"
-            placeholder="Username"
+            name="email"
+            placeholder="Email Address"
             onChange={this.handleChanges}
-            value={this.state.credentials.username}
+            value={this.state.credentials.email}
           />
           <Input
             type="password"
@@ -66,8 +73,8 @@ const mapStateToProps = state => ({
 LogIn.propTypes = {
   error: PropTypes.string,
   loggingIn: PropTypes.bool,
-  logIn: PropTypes.func
-}
+  logIn: PropTypes.func,
+};
 
 export default connect(
   mapStateToProps,

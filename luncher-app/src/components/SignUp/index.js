@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { signup } from '../../actions/signup';
 import { Form, Button, Input, Title } from '../../globals/styles';
 import { RoleContainer } from './signupStyles';
+import routes from '../../consts/urls';
+import { getToken } from '../../helpers/localStorage';
 
 class SignUpForm extends Component {
   state = {
@@ -17,6 +19,13 @@ class SignUpForm extends Component {
     error: '',
   };
 
+  componentDidMount() {
+    const token = getToken();
+    if (token) {
+      this.props.history.push(routes.home);
+    }
+  }
+
   handleChanges = e => {
     this.setState({
       newUser: { ...this.state.newUser, [e.target.name]: e.target.value },
@@ -29,10 +38,9 @@ class SignUpForm extends Component {
     const notEmpty =
       firstName.trim() && lastName.trim() && email.trim() && password.trim();
     if (notEmpty) {
-      this.props.signup({...this.state.newUser}).then(res => {
-        console.log(res);
+      this.props.signup({ ...this.state.newUser }).then(res => {
         if (res) {
-          this.props.history.push('/login');
+          this.props.history.push(routes.login);
         }
       });
     } else {
