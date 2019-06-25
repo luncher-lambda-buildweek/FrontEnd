@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { signup } from '../../actions/signup';
-import { Form, Button, Input } from '../../globals/styles';
+import { Form, Button, Input, Title } from '../../globals/styles';
 import { RoleContainer } from './signupStyles';
 
 class SignUpForm extends Component {
@@ -44,7 +44,7 @@ class SignUpForm extends Component {
     const { firstName, lastName, email, password, role } = this.state.newUser;
     return (
       <div>
-        <h2>Sign Up</h2>
+        <Title>Sign Up</Title>
         {!role ? (
           <RoleContainer>
             <h3>Select Account Type:</h3>
@@ -57,11 +57,11 @@ class SignUpForm extends Component {
           </RoleContainer>
         ) : (
           <div>
-            <h2>
+            <Title>
               {role === 'donor'
                 ? 'Create Patron Account'
                 : 'Create a School Admin Account'}
-            </h2>
+            </Title>
             <Form onSubmit={this.signup}>
               {this.props.error && <p>{this.props.error}</p>}
               <Input
