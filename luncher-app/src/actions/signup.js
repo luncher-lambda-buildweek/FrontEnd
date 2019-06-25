@@ -6,12 +6,13 @@ export const CREATING_ERROR = 'CREATING_ERROR';
 
 export const signup = newUser => dispatch => {
   dispatch({ type: CREATING_ACCOUNT });
-  axios
-    .post('#', newUser)
+  return axios
+    .post('http://localhost:5000/api/register', newUser)
     .then(res => {
       dispatch({ type: ACCOUNT_CREATED });
+      return true;
     })
-    .catch(err =>
-      dispatch({ type: CREATING_ERROR, payload: 'Error Creating Account' }),
-    );
+    .catch(err => {
+      dispatch({ type: CREATING_ERROR, payload: 'Error Creating Account' });
+    });
 };
