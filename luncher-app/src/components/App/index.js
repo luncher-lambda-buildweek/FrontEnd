@@ -4,6 +4,7 @@ import LogIn from '../LogIn';
 import SignUp from '../SignUp';
 import Header from '../Header';
 import { MainContainer } from './appStyle';
+import Home from '../Home';
 
 const App = () => {
   return (
@@ -11,7 +12,7 @@ const App = () => {
       <div>
         <Header />
         <MainContainer>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" component={Home} />
           <Route path="/login" component={LogIn} />
           <Route path="/register" component={SignUp} />
         </MainContainer>
