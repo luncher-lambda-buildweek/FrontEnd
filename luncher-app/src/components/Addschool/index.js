@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Input } from '../../globals/styles';
-import { createSchool } from '../../actions/createSchool';
+import { Form, Button, Input, Title } from '../../globals/styles';
+import { createSchool } from '../../actions/schools';
 
 class AddSchoolForm extends React.Component {
   state = {
@@ -47,9 +47,9 @@ class AddSchoolForm extends React.Component {
     return (
       <div>
           <div>
-            <h2>
+            <Title>
               Create your school's profile
-            </h2>
+            </Title>
             <Form onSubmit={this.addSchool}>
               <Input
                 name="schoolName"
