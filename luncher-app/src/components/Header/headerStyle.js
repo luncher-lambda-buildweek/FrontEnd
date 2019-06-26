@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
   padding: 20px 10px;
   height: 30px;
   background-color: white;
+  z-index: 999;
 
   a {
     margin: 0;

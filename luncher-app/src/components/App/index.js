@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {
     const token = getToken();
     if (token) {
-      const user = decodeToken(token)
+      const user = decodeToken(token);
       this.props.loggedIn(user.role);
     }
   }

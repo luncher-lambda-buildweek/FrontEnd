@@ -20,13 +20,11 @@ const Header = props => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            {props.role === roles.admin ? (
+          <NavLink to={routes.home}>Home</NavLink>
+            {props.role === roles.admin && (
               <React.Fragment>
-                <NavLink to={routes.home}>Home</NavLink>
                 <NavLink to={routes.addSchool}>Add School</NavLink>
               </React.Fragment>
-            ) : (
-              <NavLink to={routes.donate}>Home</NavLink>
             )}
             <span onClick={clearLocalStorage}>Logout</span>
           </React.Fragment>
