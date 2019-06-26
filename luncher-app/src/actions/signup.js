@@ -6,7 +6,6 @@ export const ACCOUNT_CREATED = 'ACCOUNT_CREATED';
 export const CREATING_ERROR = 'CREATING_ERROR';
 
 export const signup = newUser => dispatch => {
-  console.log(newUser)
   dispatch({ type: CREATING_ACCOUNT });
   return axios
     .post(`${HOST_URL}/register`, newUser)

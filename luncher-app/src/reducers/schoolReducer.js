@@ -1,14 +1,31 @@
-import { FETCH_SCHOOLS, FETCH_SUCCESS, FETCH_FAILED, CREATE_SCHOOL_START, CREATE_SCHOOL_SUCCESS, CREATE_SCHOOL_FAILURE} from '../actions/schools';
+import {
+  FETCH_SCHOOLS,
+  FETCH_SUCCESS,
+  FETCH_FAILED,
+  CREATE_SCHOOL_START,
+  CREATE_SCHOOL_SUCCESS,
+  CREATE_SCHOOL_FAILURE,
+} from '../actions/schools';
 
 const initialState = {
-  schools: [],
+  schools: [
+    // {
+    //   id: number,
+    //   user_id: number,
+    //   schoolName: string,
+    //   location: string ex. TX, USA,
+    //   currentFunds: null,
+    //   email: "knkn@yahoo.com",
+    //   phoneNumber: 23456,
+    //   schoolImg: ""
+    // },
+  ],
   fetchingSchools: false,
   creatingSchool: false,
   error: null,
 };
 
 const schoolReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case FETCH_SCHOOLS:
       return { ...state, fetchingSchools: true, error: null };
@@ -19,7 +36,7 @@ const schoolReducer = (state = initialState, action) => {
     case CREATE_SCHOOL_START:
       return { ...state, creatingSchool: true, error: null };
     case CREATE_SCHOOL_SUCCESS:
-      return { ...state, creatingSchool: false, schools: action.payload };
+      return { ...state, creatingSchool: false };
     case CREATE_SCHOOL_FAILURE:
       return { ...state, creatingSchool: false, error: action.payload };
     default:

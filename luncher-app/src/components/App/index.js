@@ -10,12 +10,15 @@ import AddSchoolForm from '../Addschool/index';
 import routes from '../../consts/urls';
 import { loggedIn } from '../../actions/login';
 import { getToken } from '../../helpers/localStorage';
+import { PrivateRoute } from '../PrivateRoute';
+import { decodeToken } from '../../helpers/tokenHelper';
 
 class App extends Component {
   componentDidMount() {
     const token = getToken();
     if (token) {
-      this.props.loggedIn();
+      const user = decodeToken(token);
+      this.props.loggedIn(user);
     }
   }
 
@@ -25,10 +28,10 @@ class App extends Component {
         <div>
           <Header />
           <MainContainer>
-            <Route exact path={routes.home} component={Home} />
             <Route path={routes.login} component={LogIn} />
             <Route path={routes.signup} component={SignUp} />
-            <Route path={routes.addSchool} component={AddSchoolForm} />
+            <Route exact path={routes.home} component={Home} />
+            <PrivateRoute path={routes.addSchool} component={AddSchoolForm} />
           </MainContainer>
         </div>
       </Router>

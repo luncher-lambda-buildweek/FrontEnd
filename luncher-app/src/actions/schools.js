@@ -14,7 +14,6 @@ export const fetchSchools = () => dispatch => {
   axiosWithAuth()
     .get(`${HOST_URL}/schools`)
     .then(res => {
-      console.log(res)
       return dispatch({type: FETCH_SUCCESS, payload: res.data})
     })
     .catch(err => ({ type: FETCH_FAILED }));
@@ -25,10 +24,10 @@ export const createSchool = newSchool => dispatch => {
   return axiosWithAuth()
     .post(`${HOST_URL}/schools`, newSchool)
     .then(res => {
-      dispatch({ type: CREATE_SCHOOL_SUCCESS, payload: res.payload });
+      dispatch({ type: CREATE_SCHOOL_SUCCESS });
       return true;
     })
     .catch(err => {
-      dispatch({ type: CREATE_SCHOOL_FAILURE, payload: err });
+      dispatch({ type: CREATE_SCHOOL_FAILURE, payload: err.message });
     });
 };
