@@ -13,7 +13,10 @@ export const fetchSchools = () => dispatch => {
   dispatch({ type: FETCH_SCHOOLS });
   axiosWithAuth()
     .get(`${HOST_URL}/schools`)
-    .then(res => ({ type: FETCH_SUCCESS, payload: res.data }))
+    .then(res => {
+      console.log(res)
+      return dispatch({type: FETCH_SUCCESS, payload: res.data})
+    })
     .catch(err => ({ type: FETCH_FAILED }));
 };
 
