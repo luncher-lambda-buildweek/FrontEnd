@@ -7,6 +7,7 @@ const routes = {
   signup: '/register',
   login: '/login',
   donate: '/donate',
+  editSchool: '/edit-school'
 };
 
 export default routes;
