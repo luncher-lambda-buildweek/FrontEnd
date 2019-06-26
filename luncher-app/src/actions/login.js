@@ -6,8 +6,8 @@ export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const loggedIn = role => {
-  return { type: LOGIN_SUCCESS, payload: role };
+export const loggedIn = user => {
+  return { type: LOGIN_SUCCESS, payload: user };
 };
 
 export const logIn = creds => dispatch => {
@@ -16,7 +16,7 @@ export const logIn = creds => dispatch => {
     .post(`${HOST_URL}/login`, creds)
     .then(res => {
       setToken(res.data.token);
-      dispatch(loggedIn(res.data.role));
+      dispatch(loggedIn(res.data));
       return true;
     })
     .catch(err => {
