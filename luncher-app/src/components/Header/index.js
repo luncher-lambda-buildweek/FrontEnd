@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { HeaderContainer, NavContainer } from './headerStyle';
 import routes from '../../consts/urls';
 import { clearLocalStorage } from '../../helpers/localStorage';
+import roles from '../../consts/roles';
 
 const Header = props => {
   return (
@@ -19,8 +20,14 @@ const Header = props => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <NavLink to={routes.home}>Home</NavLink>
-            <NavLink to={routes.addSchool}>Add School</NavLink>
+            {props.role === roles.admin ? (
+              <React.Fragment>
+                <NavLink to={routes.home}>Home</NavLink>
+                <NavLink to={routes.addSchool}>Add School</NavLink>
+              </React.Fragment>
+            ) : (
+              <NavLink to={routes.donate}>Home</NavLink>
+            )}
             <span onClick={clearLocalStorage}>Logout</span>
           </React.Fragment>
         )}
@@ -32,6 +39,7 @@ const Header = props => {
 const mapStateToProps = ({ loginReducer }) => {
   return {
     isLoggedIn: loginReducer.loggedIn,
+    role: loginReducer.role,
   };
 };
 
