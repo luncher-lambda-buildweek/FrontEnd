@@ -58,65 +58,67 @@ class AddSchoolForm extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Title>Create your school's profile</Title>
-          <Form onSubmit={this.addSchool}>
-            <Input
-              name="schoolName"
-              placeholder="School Name"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.schoolName}
-            />
-            <Input
-              name="location"
-              placeholder="City, State ex (Miami, FL)"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.location}
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.email}
-            />
-            <Input
-              type="number"
-              name="phoneNumber"
-              placeholder="Phone Number"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.phoneNumber}
-            />
-            <Input
-              type="number"
-              name="fundsNeeded"
-              placeholder="100.00"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.fundsNeeded}
-            />
-            <Input
-              type="number"
-              name="currentFunds"
-              placeholder="Password"
-              required
-              onChange={this.handleChanges}
-              value={this.state.newSchool.currentFunds}
-            />
-            <Input
-              type="string"
-              name="schoolImg"
-              placeholder="Image URL"
-              onChange={this.handleChanges}
-              value={this.state.newSchool.schoolImg}
-            />
-            <Button>Add School</Button>
-          </Form>
-        </div>
+          <div>
+            <Title>
+              Create your school's profile
+            </Title>
+            <Form onSubmit={this.addSchool}>
+              <Input
+                name="schoolName"
+                placeholder="School Name"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.schoolName}
+              />
+              <Input
+                name="location"
+                placeholder="City, State ex (Miami, FL)"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.location}
+              />
+              <Input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.email}
+              />
+              <Input
+                type="number"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.phoneNumber}
+              />
+              <Input
+                type="number"
+                name="fundsNeeded"
+                placeholder="Funds needed ex. (1000.00)"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.fundsNeeded}
+              />
+              <Input
+                type="number"
+                name="currentFunds"
+                placeholder="Current funds ex. (10.00)"
+                required
+                onChange={this.handleChanges}
+                value={this.state.newSchool.currentFunds}
+              />
+              <Input
+                type="string"
+                name="schoolImg"
+                placeholder="Image URL"
+                onChange={this.handleChanges}
+                value={this.state.newSchool.schoolImg}
+              />
+              <Button>Add School</Button>
+            </Form>
+          </div>
       </div>
     );
   }
