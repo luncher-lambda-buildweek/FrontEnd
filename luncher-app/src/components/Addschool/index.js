@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Button, Input, Title } from '../../globals/styles';
 import { createSchool } from '../../actions/schools';
+import routes from '../../consts/urls';
 
 class AddSchoolForm extends React.Component {
   state = {
@@ -34,8 +35,7 @@ class AddSchoolForm extends React.Component {
       this.props.createSchool(this.state.newSchool).then(res => {
         console.log(res);
         if (res) {
-          this.props.history.push('/');
-          // need to insert endpoint for home page here
+          this.props.history.push(routes.home);
         }
       });
     } else {
@@ -84,7 +84,7 @@ class AddSchoolForm extends React.Component {
               <Input
                 type="number"
                 name="fundsNeeded"
-                placeholder="100.00"
+                placeholder="Funds needed ex. (1000.00)"
                 required
                 onChange={this.handleChanges}
                 value={this.state.newSchool.fundsNeeded}
@@ -92,7 +92,7 @@ class AddSchoolForm extends React.Component {
               <Input
                 type="number"
                 name="currentFunds"
-                placeholder="Password"
+                placeholder="Current funds ex. (10.00)"
                 required
                 onChange={this.handleChanges}
                 value={this.state.newSchool.currentFunds}

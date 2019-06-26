@@ -8,7 +8,7 @@ import { fetchSchools } from '../../actions/schools';
 class Schools extends Component {
 
   componentDidMount() {
-    // this.props.fetchSchools();
+    this.props.fetchSchools();
   }
 
   render() {
