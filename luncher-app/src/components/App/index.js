@@ -11,12 +11,14 @@ import routes from '../../consts/urls';
 import { loggedIn } from '../../actions/login';
 import { getToken } from '../../helpers/localStorage';
 import { PrivateRoute } from '../PrivateRoute';
+import { decodeToken } from '../../helpers/tokenHelper';
 
 class App extends Component {
   componentDidMount() {
     const token = getToken();
     if (token) {
-      this.props.loggedIn();
+      const user = decodeToken(token)
+      this.props.loggedIn(user.role);
     }
   }
 
