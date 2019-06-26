@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { HeaderContainer, NavContainer } from './headerStyle';
 import routes from '../../consts/urls';
 import { clearLocalStorage } from '../../helpers/localStorage';
-import roles from '../../consts/roles';
 
 const Header = props => {
   return (
@@ -13,6 +13,7 @@ const Header = props => {
         <h1>Luncher</h1>
       </Link>
       <NavContainer>
+        <NavLink to={routes.home}>Schools</NavLink>
         {!props.isLoggedIn ? (
           <React.Fragment>
             <NavLink to={routes.login}>Log In</NavLink>
@@ -20,12 +21,6 @@ const Header = props => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-          <NavLink to={routes.home}>Home</NavLink>
-            {props.role === roles.admin && (
-              <React.Fragment>
-                <NavLink to={routes.addSchool}>Add School</NavLink>
-              </React.Fragment>
-            )}
             <span onClick={clearLocalStorage}>Logout</span>
           </React.Fragment>
         )}
@@ -39,6 +34,11 @@ const mapStateToProps = ({ loginReducer }) => {
     isLoggedIn: loginReducer.loggedIn,
     role: loginReducer.role,
   };
+};
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  role: PropTypes.string
 };
 
 export default connect(
