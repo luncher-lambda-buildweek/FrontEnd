@@ -6,6 +6,7 @@ import { Form, Button, Input, Title } from '../../globals/styles';
 import { RoleContainer } from './signupStyles';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
+import roles from '../../consts/roles';
 
 class SignUpForm extends Component {
   state = {
@@ -66,7 +67,7 @@ class SignUpForm extends Component {
         ) : (
           <div>
             <Title>
-              {role === 'donor'
+              {role === roles.donor
                 ? 'Create Patron Account'
                 : 'Create a School Admin Account'}
             </Title>
