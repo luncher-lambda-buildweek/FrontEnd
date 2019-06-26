@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { SchoolsContainer, School } from './schoolsStyle';
+import {
+  SchoolsContainer,
+  School,
+  ImageContainer,
+  SchoolDetail,
+} from './schoolsStyle';
 import { Title } from '../../globals/styles';
 import { fetchSchools } from '../../actions/schools';
+import defaultImg from '../../assets/school_default.jpg';
 
 class Schools extends Component {
-
   componentDidMount() {
     this.props.fetchSchools();
   }
@@ -18,13 +23,31 @@ class Schools extends Component {
         <SchoolsContainer>
           {this.props.schools.map(school => (
             <School key={school.id}>
-              <h4>{school.schoolName}</h4>
-              <p>
-                Location: {school.state}, {school.country}
-              </p>
-              <p>Email: {school.contact}</p>
-              <p>Amount Needed: {school.fundsNeeded}</p>
-              <button>Donate</button>
+              <ImageContainer>
+                <img
+                  src={school.schoolImg ? school.schoolImg : defaultImg}
+                  alt="school avatar"
+                />
+              </ImageContainer>
+              <SchoolDetail>
+                <h4>{school.schoolName}</h4>
+                {school.location && (
+                  <p>
+                    Location: <span>{school.location}</span>
+                  </p>
+                )}
+                {school.email && (
+                  <p>
+                    Email: <span>{school.email}</span>
+                  </p>
+                )}
+                {school.fundsNeeded && (
+                  <p>
+                    Amount Needed: <span>{school.fundsNeeded}</span>
+                  </p>
+                )}
+                <button>Donate</button>
+              </SchoolDetail>
             </School>
           ))}
         </SchoolsContainer>
@@ -36,15 +59,15 @@ class Schools extends Component {
 const mapStateToProps = ({ schoolReducer }) => {
   return {
     schools: schoolReducer.schools,
-    error: schoolReducer.error
-  }
-}
+    error: schoolReducer.error,
+  };
+};
 
 Schools.propTypes = {
   schools: PropTypes.arrayOf(PropTypes.object),
   fetchSchools: PropTypes.func,
-  error: PropTypes.string
-}
+  error: PropTypes.string,
+};
 
 export default connect(
   mapStateToProps,
