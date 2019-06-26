@@ -4,6 +4,7 @@ const initialState = {
   error: '',
   loggingIn: false,
   loggedIn: false,
+  role: ''
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -26,6 +27,7 @@ const loginReducer = (state = initialState, action) => {
         error: '',
         loggingIn: false,
         loggedIn: true,
+        role: action.payload
       };
     default:
       return state;
