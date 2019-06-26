@@ -1,4 +1,5 @@
 import routes from '../consts/urls';
+import { isTokenExpired } from './tokenHelper';
 
 export const setToken = payload => {
   try {
@@ -14,6 +15,12 @@ export const getToken = () => {
     const token = localStorage.getItem('luncher-token');
     if (token === null) {
       return undefined;
+    } else {
+      const isExpired = isTokenExpired(token); // Check if token is expired
+      if (isExpired) {
+        clearLocalStorage();
+        return undefined;
+      }
     }
     return JSON.parse(token);
   } catch {
