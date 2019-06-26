@@ -6,7 +6,7 @@ import SignUp from '../SignUp';
 import Header from '../Header';
 import { MainContainer } from './appStyle';
 import Home from '../Home';
-import AddSchoolForm from '../Addschool/index';
+import SchoolForm from '../SchoolForm';
 import routes from '../../consts/urls';
 import { loggedIn } from '../../actions/login';
 import { getToken } from '../../helpers/localStorage';
@@ -31,7 +31,8 @@ class App extends Component {
             <Route path={routes.login} component={LogIn} />
             <Route path={routes.signup} component={SignUp} />
             <Route exact path={routes.home} component={Home} />
-            <PrivateRoute path={routes.addSchool} component={AddSchoolForm} />
+            <PrivateRoute path={routes.addSchool} component={SchoolForm} />
+            <PrivateRoute path={`${routes.editSchool}/:id`} component={SchoolForm} />
           </MainContainer>
         </div>
       </Router>

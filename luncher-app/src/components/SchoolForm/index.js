@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, Title } from '../../globals/styles';
-import { createSchool } from '../../actions/schools';
+import { createSchool, fetchSchools } from '../../actions/schools';
 import routes from '../../consts/urls';
 
-class AddSchoolForm extends React.Component {
+class SchoolForm extends React.Component {
   state = {
     newSchool: {
       schoolName: '',
@@ -17,7 +17,23 @@ class AddSchoolForm extends React.Component {
       schoolImg: '',
     },
     error: '',
+    edit: false,
   };
+
+  componentDidMount() {
+  const id = this.props.match.params.id;
+  if (id) {
+    this.props.fetchSchools()
+    const school = this.props.schools.find(school => {
+      return school.id === id
+    })
+    if (school) {
+      this.setState({ edit: true, newSchool: {...school} })
+    }
+  }
+  
+
+  }
 
   handleChanges = e => {
     this.setState({
@@ -125,14 +141,15 @@ class AddSchoolForm extends React.Component {
 
 const mapStateToProps = ({ schoolReducer }) => ({
   error: schoolReducer.error,
+  schools: schoolReducer.schools,
 });
 
-AddSchoolForm.propTypes = {
+SchoolForm.propTypes = {
   error: PropTypes.string,
   createSchool: PropTypes.func,
 };
 
 export default connect(
   mapStateToProps,
-  { createSchool },
-)(AddSchoolForm);
+  { createSchool, fetchSchools },
+)(SchoolForm);

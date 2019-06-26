@@ -1,20 +1,33 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { Title, Alert } from '../../globals/styles';
-import routes from '../../consts/urls';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { Title, Alert } from "../../globals/styles";
+import routes from "../../consts/urls";
 import {
   SchoolDisplay,
   SchoolDisplayDetails,
   SchoolImage,
-  Header,
-} from './adminStyle';
-import defaultImg from '../../assets/school_default.jpg';
-import { ImageContainer } from '../Schools/schoolsStyle';
+  Header
+} from "./adminStyle";
+import defaultImg from "../../assets/school_default.jpg";
+import { ImageContainer } from "../Schools/schoolsStyle";
+import {
+  updateSchool,
+  deleteSchool,
+  fetchSchools
+} from "../../actions/schools";
 
 class Admin extends Component {
+  handleDelete = id => {
+    this.props.deleteSchool(id).then(res => {
+      if (res) {
+        this.props.fetchSchools();
+      }
+    });
+  };
+
   render() {
     const { adminSchool } = this.props;
     return (
@@ -23,7 +36,7 @@ class Admin extends Component {
         {!adminSchool ? (
           <React.Fragment>
             <Alert>
-              You have not added any school{' '}
+              You have not added any school{" "}
               <Link to={routes.addSchool}>Add School</Link>
             </Alert>
           </React.Fragment>
@@ -33,8 +46,10 @@ class Admin extends Component {
               <Header>
                 <h3>{adminSchool.schoolName}</h3>
                 <div>
-                  <FaEdit />
-                  <FaTrash />
+                  <Link to={`${routes.editSchool}/${adminSchool.id}`}><FaEdit /></Link>
+                  <button onClick={() => this.handleDelete(adminSchool.id)}>
+                    <FaTrash />
+                  </button>
                 </div>
               </Header>
               {adminSchool.location && (
@@ -53,7 +68,7 @@ class Admin extends Component {
                 </p>
               )}
               <p>
-                Current Funds:{' '}
+                Current Funds:{" "}
                 <span>
                   {adminSchool.currentFunds ? adminSchool.currentFunds : 0}
                 </span>
@@ -79,10 +94,11 @@ class Admin extends Component {
 const mapStateToProps = ({ schoolReducer, loginReducer }) => {
   // Loop through array and get school associated with user by id
   const adminSchool = schoolReducer.schools.find(
-    school => loginReducer.id === school.user_id,
+    school => loginReducer.id === school.user_id
   );
   return {
     adminSchool,
+    error: schoolReducer.error
   };
 };
 
@@ -96,11 +112,14 @@ Admin.propTypes = {
     phoneNumber: PropTypes.number,
     schoolImg: PropTypes.string,
     schoolName: PropTypes.string,
-    user_id: PropTypes.number,
+    user_id: PropTypes.number
   }),
+  error: PropTypes.string,
+  updateSchool: PropTypes.func,
+  deleteSchool: PropTypes.func
 };
 
 export default connect(
   mapStateToProps,
-  {},
+  { updateSchool, deleteSchool, fetchSchools }
 )(Admin);
