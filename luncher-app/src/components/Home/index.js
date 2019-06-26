@@ -1,24 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Schools from '../Schools';
-import { Title, Alert } from '../../globals/styles';
 import { HomeContainer } from './homeStyle';
-import routes from '../../consts/urls';
 import roles from '../../consts/roles';
+import Admin from '../Admin';
 
 const Home = props => {
   return (
     <HomeContainer>
-      {props.role === roles.admin && (
-        <React.Fragment>
-          <Title>Your School</Title>
-          <Alert>
-            You have not added any school{' '}
-            <Link to={routes.addSchool}>Add School</Link>
-          </Alert>
-        </React.Fragment>
-      )}
+      {props.role === roles.admin && <Admin />}
       <Schools />
     </HomeContainer>
   );
@@ -28,6 +19,10 @@ const mapStateToProps = ({ loginReducer }) => {
   return {
     role: loginReducer.role,
   };
+};
+
+Home.propTypes = {
+  role: PropTypes.string
 };
 
 export default connect(
