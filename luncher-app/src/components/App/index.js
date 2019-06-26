@@ -18,7 +18,7 @@ class App extends Component {
     const token = getToken();
     if (token) {
       const user = decodeToken(token);
-      this.props.loggedIn(user.role);
+      this.props.loggedIn(user);
     }
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
           <MainContainer>
             <Route path={routes.login} component={LogIn} />
             <Route path={routes.signup} component={SignUp} />
-            <PrivateRoute exact path={routes.home} component={Home} />
+            <Route exact path={routes.home} component={Home} />
             <PrivateRoute path={routes.addSchool} component={AddSchoolForm} />
           </MainContainer>
         </div>
