@@ -12,7 +12,7 @@ export const fetchSchools = () => dispatch => {
     .then(res => {
       return dispatch({ type: FETCH_SUCCESS, payload: res.data });
     })
-    .catch(err => ({ type: FAILED, payload: err.message }));
+    .catch(err => dispatch({ type: FAILED, payload: err.message }));
 };
 
 export const CREATE_SCHOOL_START = 'CREATE_SCHOOL_START';
