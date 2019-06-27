@@ -28,6 +28,7 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 3px;
   font-size: ${font.text};
+  min-width: 200px;
 
   @media (max-width: 500px) {
     width: 100%;

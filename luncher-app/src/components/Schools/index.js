@@ -23,7 +23,7 @@ class Schools extends Component {
     this.props.fetchSchools();
   }
 
-  openModal = () => {
+  goToDonate = () => {
     const isLoggedIn = getToken();
     if (!isLoggedIn) {
       return this.props.history.push(routes.login);
@@ -68,7 +68,7 @@ class Schools extends Component {
                 <Modal
                   centered
                   closeIcon
-                  trigger={<Button onClick={this.openModal}>Donate</Button>}
+                  trigger={<Button onClick={this.goToDonate}>Donate</Button>}
                 >
                   <DonateWithRouter school={school} />
                 </Modal>

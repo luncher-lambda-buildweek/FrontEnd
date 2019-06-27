@@ -14,7 +14,15 @@ You will need [node](https://nodejs.org/en/download/) and `npm` installed on you
 
 ## Installation and Setup Instructions
 
-Clone down this repository.  
+Clone down this repository.
+
+Change directory `cd luncher-app`
+
+Create `.env` file
+```
+REACT_APP_CLOUDINARY_URL = UPLOAD_URL
+REACT_APP_CLOUDINARY_UPLOAD_PRESET = PRESET
+```
 
 Installation:
 
