@@ -9,15 +9,13 @@ import {
   ImageContainer,
   SchoolDetail,
 } from './schoolsStyle';
-import { Title, MoneyIcon } from '../../globals/styles';
+import { Title, MoneyIcon, Alert } from '../../globals/styles';
 import { fetchSchools } from '../../actions/schools';
 import defaultImg from '../../assets/school_default.jpg';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
 import Donate from '../Donate';
 import { Wave } from 'react-preloading-component';
-
-
 
 const DonateWithRouter = withRouter(Donate);
 
@@ -37,49 +35,59 @@ class Schools extends Component {
     return (
       <div>
         <Title>Schools In Need</Title>
-        <SchoolsContainer>
-          {this.props.isLoading && <Wave />}
-          {this.props.schools.map(school => (
-            <School key={school.id}>
-              <ImageContainer>
-                <img
-                  src={school.schoolImg ? school.schoolImg : defaultImg}
-                  alt="school avatar"
-                />
-              </ImageContainer>
-              <SchoolDetail>
-                <h4>{school.schoolName}</h4>
-                {school.location && (
-                  <p>
-                    Location: <span>{school.location}</span>
-                  </p>
-                )}
-                {school.email && (
-                  <p>
-                    Email: <span>{school.email}</span>
-                  </p>
-                )}
-                {school.fundsNeeded && (
-                  <p>
-                    Amount Needed: <span>{school.fundsNeeded} <MoneyIcon /></span>
-                  </p>
-                )}
-                {school.currentFunds && (
-                  <p>
-                    Donations: <span>{school.currentFunds} <MoneyIcon /></span>
-                  </p>
-                )}
-                <Modal
-                  centered
-                  closeIcon
-                  trigger={<Button onClick={this.goToDonate}>Donate</Button>}
-                >
-                  <DonateWithRouter school={school} />
-                </Modal>
-              </SchoolDetail>
-            </School>
-          ))}
-        </SchoolsContainer>
+        {this.props.isLoading && <Wave />}
+        {this.props.schools.length === 0 ? (
+          <Alert>No School Available...</Alert>
+        ) : (
+          <SchoolsContainer>
+            {this.props.schools.map(school => (
+              <School key={school.id}>
+                <ImageContainer>
+                  <img
+                    src={school.schoolImg ? school.schoolImg : defaultImg}
+                    alt="school avatar"
+                  />
+                </ImageContainer>
+                <SchoolDetail>
+                  <h4>{school.schoolName}</h4>
+                  {school.location && (
+                    <p>
+                      Location: <span>{school.location}</span>
+                    </p>
+                  )}
+                  {school.email && (
+                    <p>
+                      Email: <span>{school.email}</span>
+                    </p>
+                  )}
+                  {school.fundsNeeded && (
+                    <p>
+                      Amount Needed:{' '}
+                      <span>
+                        {school.fundsNeeded} <MoneyIcon />
+                      </span>
+                    </p>
+                  )}
+                  {school.currentFunds && (
+                    <p>
+                      Donations:{' '}
+                      <span>
+                        {school.currentFunds} <MoneyIcon />
+                      </span>
+                    </p>
+                  )}
+                  <Modal
+                    centered
+                    closeIcon
+                    trigger={<Button onClick={this.goToDonate}>Donate</Button>}
+                  >
+                    <DonateWithRouter school={school} />
+                  </Modal>
+                </SchoolDetail>
+              </School>
+            ))}
+          </SchoolsContainer>
+        )}
       </div>
     );
   }
@@ -89,7 +97,7 @@ const mapStateToProps = ({ schoolReducer }) => {
   return {
     schools: schoolReducer.schools,
     error: schoolReducer.error,
-    isLoading: schoolReducer.isLoading
+    isLoading: schoolReducer.isLoading,
   };
 };
 
