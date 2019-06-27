@@ -1,11 +1,4 @@
-import {
-  FETCH_SCHOOLS,
-  FETCH_SUCCESS,
-  FETCH_FAILED,
-  CREATE_SCHOOL_START,
-  CREATE_SCHOOL_SUCCESS,
-  CREATE_SCHOOL_FAILURE,
-} from '../actions/schools';
+import * as actionTypes from '../actions/schools';
 
 const initialState = {
   schools: [
@@ -20,25 +13,35 @@ const initialState = {
     //   schoolImg: ""
     // },
   ],
-  fetchingSchools: false,
-  creatingSchool: false,
+  school: {},
+  isLoading: false,
   error: null,
 };
 
 const schoolReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_SCHOOLS:
-      return { ...state, fetchingSchools: true, error: null };
-    case FETCH_SUCCESS:
-      return { ...state, fetchingSchools: false, schools: action.payload };
-    case FETCH_FAILED:
-      return { ...state, fetchingSchools: false, error: action.payload };
-    case CREATE_SCHOOL_START:
-      return { ...state, creatingSchool: true, error: null };
-    case CREATE_SCHOOL_SUCCESS:
-      return { ...state, creatingSchool: false };
-    case CREATE_SCHOOL_FAILURE:
-      return { ...state, creatingSchool: false, error: action.payload };
+    case actionTypes.FETCH_SCHOOLS:
+      return { ...state, isLoading: true, error: null };
+    case actionTypes.FETCH_SUCCESS:
+      return { ...state, isLoading: false, schools: action.payload };
+    case actionTypes.CREATE_SCHOOL_START:
+      return { ...state, isLoading: true, error: null };
+    case actionTypes.CREATE_SCHOOL_SUCCESS:
+      return { ...state, isLoading: false };
+    case actionTypes.GET_SCHOOL:
+      return { ...state, isLoading: true, error: null };
+    case actionTypes.GET_SUCCESS:
+      return { ...state, isLoading: false, school: action.payload };
+    case actionTypes.DELETE_SCHOOL_START:
+      return { ...state, isLoading: true, error: null };
+    case actionTypes.DELETE_SCHOOL_SUCCESS:
+      return { ...state, isLoading: false };
+    case actionTypes.DONATE_START:
+      return { ...state, isLoading: true, error: null };
+    case actionTypes.DONATE_SUCCESS:
+      return { ...state, isLoading: false };
+    case actionTypes.FAILED:
+      return { ...state, isLoading: false, error: action.payload };
     default:
       return state;
   }
