@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LogIn from '../LogIn';
 import SignUp from '../SignUp';
 import Header from '../Header';
-import { MainContainer } from './appStyle';
+import {  AppContainer, MainContainer } from './appStyle';
 import Home from '../Home';
 import SchoolForm from '../SchoolForm';
 import routes from '../../consts/urls';
@@ -25,16 +25,18 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header />
-          <MainContainer>
+
+          <AppContainer>
+            <Header />
+            <MainContainer />
             <Route path={routes.login} component={LogIn} />
             <Route path={routes.signup} component={SignUp} />
             <Route exact path={routes.home} component={Home} />
             <PrivateRoute path={routes.addSchool} component={SchoolForm} />
             <PrivateRoute path={`${routes.editSchool}/:id`} component={SchoolForm} />
-          </MainContainer>
-        </div>
+            <MainContainer />
+          </AppContainer>
+      
       </Router>
     );
   }
