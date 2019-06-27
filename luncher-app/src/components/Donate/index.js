@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Pulse } from 'react-preloading-component';
 import { Button, Modal } from 'semantic-ui-react';
 import { donate, fetchSchools } from '../../actions/schools';
 import defaultImg from '../../assets/school_default.jpg';
@@ -47,6 +48,7 @@ class Donate extends Component {
           </AvatarContainer>
           <DonateDescription>
             <Title>{schoolName}</Title>
+            {this.props.error && <Alert>Error making your donation, Please Try Again!!</Alert>}
             {!this.state.message ? (
               <form onSubmit={event => this.submitHandler(event, id)}>
                 <input
@@ -54,7 +56,9 @@ class Donate extends Component {
                   onChange={this.onAmountChange}
                   placeholder="Amount"
                 />
-                <Button type="submit">Add my Donation</Button>
+                <Button type="submit">
+                  {this.props.isDonating ? <Pulse /> : 'Add my Donation'}
+                </Button>
               </form>
             ) : (
               <Alert>{this.state.message}</Alert>
@@ -66,11 +70,22 @@ class Donate extends Component {
   }
 }
 
+const mapStateToProps = ({ schoolReducer }) => {
+  return {
+    isDonating: schoolReducer.isLoading,
+    error: schoolReducer.error
+  };
+};
+
 Donate.propTypes = {
   school: PropTypes.object,
+  isDonating: PropTypes.bool,
+  donate: PropTypes.func,
+  fetchSchools: PropTypes.func,
+  error: PropTypes.string,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   { donate, fetchSchools },
 )(Donate);
