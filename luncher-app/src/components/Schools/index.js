@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { Button, Modal } from 'semantic-ui-react';
 import {
   SchoolsContainer,
   School,
@@ -10,11 +12,23 @@ import {
 import { Title } from '../../globals/styles';
 import { fetchSchools } from '../../actions/schools';
 import defaultImg from '../../assets/school_default.jpg';
+import routes from '../../consts/urls';
+import { getToken } from '../../helpers/localStorage';
+import Donate from '../Donate';
+
+const DonateWithRouter = withRouter(Donate);
 
 class Schools extends Component {
   componentDidMount() {
     this.props.fetchSchools();
   }
+
+  openModal = () => {
+    const isLoggedIn = getToken();
+    if (!isLoggedIn) {
+      return this.props.history.push(routes.login);
+    }
+  };
 
   render() {
     return (
@@ -46,7 +60,18 @@ class Schools extends Component {
                     Amount Needed: <span>{school.fundsNeeded}</span>
                   </p>
                 )}
-                <button>Donate</button>
+                {school.currentFunds && (
+                  <p>
+                    Donations: <span>{school.currentFunds}</span>
+                  </p>
+                )}
+                <Modal
+                  centered
+                  closeIcon
+                  trigger={<Button onClick={this.openModal}>Donate</Button>}
+                >
+                  <DonateWithRouter school={school} />
+                </Modal>
               </SchoolDetail>
             </School>
           ))}

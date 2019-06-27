@@ -9,9 +9,9 @@ export const SchoolsContainer = styled.div`
 `;
 
 export const School = styled.div`
-  width: 23.2%;
+  width: 25%;
   min-width: 200px;
-  margin: 5px 10px;
+  margin: 5px 12px;
   min-height: 430px;
   padding-bottom: 35px;
   border-radius: 3px;
@@ -27,9 +27,10 @@ export const School = styled.div`
 export const ImageContainer = styled.div`
   width: 100%;
 
+  height: 240px;
   img {
     width: 100%;
-    height: 240px;
+    height: 100%;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
   }
