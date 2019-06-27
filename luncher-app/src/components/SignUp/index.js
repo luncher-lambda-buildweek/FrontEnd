@@ -7,6 +7,8 @@ import { RoleContainer } from './signupStyles';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
 import roles from '../../consts/roles';
+import { Pulse } from 'react-preloading-component';
+
 
 class SignUpForm extends Component {
   state = {
@@ -106,7 +108,7 @@ class SignUpForm extends Component {
 
               {this.state.error && <p>{this.state.error}</p>}
 
-              <Button>Create Account</Button>
+              <Button disabled={this.props.signingUp}>{this.props.signingUp && <Pulse /> }Create Account</Button>
             </Form>
           </div>
         )}

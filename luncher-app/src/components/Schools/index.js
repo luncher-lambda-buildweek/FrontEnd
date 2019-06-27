@@ -9,12 +9,15 @@ import {
   ImageContainer,
   SchoolDetail,
 } from './schoolsStyle';
-import { Title } from '../../globals/styles';
+import { Title, MoneyIcon } from '../../globals/styles';
 import { fetchSchools } from '../../actions/schools';
 import defaultImg from '../../assets/school_default.jpg';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
 import Donate from '../Donate';
+import { Wave } from 'react-preloading-component';
+
+
 
 const DonateWithRouter = withRouter(Donate);
 
@@ -35,6 +38,7 @@ class Schools extends Component {
       <div>
         <Title>Schools In Need</Title>
         <SchoolsContainer>
+          {this.props.isLoading && <Wave />}
           {this.props.schools.map(school => (
             <School key={school.id}>
               <ImageContainer>
@@ -57,12 +61,12 @@ class Schools extends Component {
                 )}
                 {school.fundsNeeded && (
                   <p>
-                    Amount Needed: <span>{school.fundsNeeded}</span>
+                    Amount Needed: <span>{school.fundsNeeded} <MoneyIcon /></span>
                   </p>
                 )}
                 {school.currentFunds && (
                   <p>
-                    Donations: <span>{school.currentFunds}</span>
+                    Donations: <span>{school.currentFunds} <MoneyIcon /></span>
                   </p>
                 )}
                 <Modal
@@ -85,6 +89,7 @@ const mapStateToProps = ({ schoolReducer }) => {
   return {
     schools: schoolReducer.schools,
     error: schoolReducer.error,
+    isLoading: schoolReducer.isLoading
   };
 };
 

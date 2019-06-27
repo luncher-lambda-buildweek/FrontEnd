@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { font } from './variables';
+import { GiTakeMyMoney } from "react-icons/gi";
+
+export const MoneyIcon = styled(GiTakeMyMoney)`
+  font-size: ${font.medium};
+`
 
 export const Form = styled.form`
   display: flex;
@@ -29,6 +34,7 @@ export const Button = styled.button`
   border-radius: 3px;
   font-size: ${font.text};
   min-width: 200px;
+  transition: .4s ease-in-out;
 
   @media (max-width: 500px) {
     width: 100%;
@@ -36,6 +42,11 @@ export const Button = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    background-color: rgba(229, 142, 117, 0.4);
+    color: ;
   }
 `;
 
