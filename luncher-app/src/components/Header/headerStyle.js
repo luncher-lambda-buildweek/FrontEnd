@@ -12,6 +12,9 @@ export const HeaderContainer = styled.div`
   background-color: white;
   z-index: 999;
   border-bottom: 1px solid lightgray;
+  @media (max-width: 700px) {
+    width: 88%;
+  }
 
   a {
     margin: 0;

@@ -9,6 +9,10 @@ export const AppContainer = styled.div`
   width: 70%;
   background-color: white;
   position: relative;
+  @media (max-width: 700px) {
+    width: 100%;
+    position: absolute;
+  }
 `;
 
 export const MainContainer = styled.div`
