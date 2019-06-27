@@ -5,6 +5,8 @@ import { logIn } from '../../actions/login';
 import { Form, Button, Input, Title } from '../../globals/styles';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
+import { Pulse } from 'react-preloading-component';
+
 
 class LogIn extends React.Component {
   state = {
@@ -58,16 +60,16 @@ class LogIn extends React.Component {
             onChange={this.handleChanges}
             value={this.state.credentials.password}
           />
-          <Button>Log In!</Button>
+          <Button disabled={this.props.loggingIn}>{this.props.loggingIn && <Pulse />}Log In!</Button>
         </Form>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  error: state.error,
-  loggingIn: state.loggingIn,
+const mapStateToProps = ({ loginReducer }) => ({
+  error: loginReducer.error,
+  loggingIn: loginReducer.loggingIn,
 });
 
 LogIn.propTypes = {

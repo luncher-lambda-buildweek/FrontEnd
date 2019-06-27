@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import { font } from '../../globals/variables';
 
 export const HeaderContainer = styled.div`
-  width: 100%;
+  width: 67.7%;
   display: flex;
   position: fixed;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 10px;
-  height: 30px;
+  padding: 25px 5px;
+  height: 35px;
   background-color: white;
   z-index: 999;
+  border-bottom: 1px solid lightgray;
 
   a {
     margin: 0;
