@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { Title, Alert } from "../../globals/styles";
+import { Title, Alert, MoneyIcon } from "../../globals/styles";
 import routes from "../../consts/urls";
 import {
   SchoolDisplay,
   SchoolDisplayDetails,
   SchoolImage,
-  Header
+  Header,
 } from "./adminStyle";
 import defaultImg from "../../assets/school_default.jpg";
 import { ImageContainer } from "../Schools/schoolsStyle";
@@ -18,6 +18,7 @@ import {
   deleteSchool,
   fetchSchools
 } from "../../actions/schools";
+
 
 class Admin extends Component {
   handleDelete = id => {
@@ -64,11 +65,11 @@ class Admin extends Component {
               )}
               {adminSchool.fundsNeeded && (
                 <p>
-                  Amount Needed: <span>{adminSchool.fundsNeeded}</span>
+                  Amount Needed <MoneyIcon /> : <span>{adminSchool.fundsNeeded}</span>
                 </p>
               )}
               <p>
-                Current Funds:{" "}
+                Current Funds <MoneyIcon /> :{" "}
                 <span>
                   {adminSchool.currentFunds ? adminSchool.currentFunds : 0}
                 </span>

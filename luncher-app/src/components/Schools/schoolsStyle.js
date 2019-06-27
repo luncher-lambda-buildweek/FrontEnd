@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { font } from '../../globals/variables';
 
+
 export const SchoolsContainer = styled.div`
   display: flex;
   width: 100%;
@@ -49,6 +50,7 @@ export const SchoolDetail = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
+    align-item: center;
 
     span {
       margin-left: 10px;
