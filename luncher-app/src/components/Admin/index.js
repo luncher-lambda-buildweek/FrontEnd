@@ -10,6 +10,7 @@ import {
   SchoolDisplayDetails,
   SchoolImage,
   Header,
+  Icons
 } from "./adminStyle";
 import defaultImg from "../../assets/school_default.jpg";
 import { ImageContainer } from "../Schools/schoolsStyle";
@@ -18,6 +19,7 @@ import {
   deleteSchool,
   fetchSchools
 } from "../../actions/schools";
+
 
 
 class Admin extends Component {
@@ -46,12 +48,12 @@ class Admin extends Component {
             <SchoolDisplayDetails>
               <Header>
                 <h3>{adminSchool.schoolName}</h3>
-                <div>
+                <Icons>
                   <Link to={`${routes.editSchool}/${adminSchool.id}`}><FaEdit /></Link>
                   <button onClick={() => this.handleDelete(adminSchool.id)}>
                     <FaTrash />
                   </button>
-                </div>
+                </Icons>
               </Header>
               {adminSchool.location && (
                 <p>
