@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { font } from './variables';
+import { GiTakeMyMoney } from "react-icons/gi";
+
+export const MoneyIcon = styled(GiTakeMyMoney)`
+  font-size: ${font.medium};
+`
 
 export const Form = styled.form`
   display: flex;
