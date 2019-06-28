@@ -19,7 +19,7 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
       return {
         ...state,
-        error: '',
+        error: action.payload,
         loggingIn: false,
       };
     case LOGIN_SUCCESS:

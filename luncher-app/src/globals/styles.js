@@ -1,15 +1,16 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { font } from './variables';
-import { GiTakeMyMoney } from "react-icons/gi";
+import { GiTakeMyMoney } from 'react-icons/gi';
 
 export const MoneyIcon = styled(GiTakeMyMoney)`
   font-size: ${font.medium};
-`
+`;
 
 export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const Input = styled.input`
@@ -34,7 +35,7 @@ export const Button = styled.button`
   border-radius: 3px;
   font-size: ${font.text};
   min-width: 200px;
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
 
   @media (max-width: 500px) {
     width: 100%;
@@ -68,5 +69,18 @@ export const Alert = styled.div`
     text-decoration: none;
     margin: 0 5px;
     font-size: ${font.text};
+  }
+`;
+
+export const FadeIn = css`
+  animation: fadeIn 1.5s;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 `;

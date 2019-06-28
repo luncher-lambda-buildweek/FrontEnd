@@ -18,3 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #789956;
 }
+
+.active {
+  color: green;
+}

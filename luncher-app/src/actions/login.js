@@ -20,6 +20,6 @@ export const logIn = creds => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAILURE, payload: err.message });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response.data.message});
     });
 };

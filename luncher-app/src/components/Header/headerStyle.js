@@ -21,7 +21,6 @@ export const HeaderContainer = styled.div`
     color: black;
     text-decoration: none;
     font-size: ${font.large};
-
   }
 `;
 
@@ -31,7 +30,12 @@ export const NavContainer = styled.div`
   justify-content: flex-end;
   padding: 0 5px;
 
-  a, span {
+  .active {
+    color: green;
+  }
+
+  a,
+  span {
     color: black;
     text-decoration: none;
     margin: 0 5px;
