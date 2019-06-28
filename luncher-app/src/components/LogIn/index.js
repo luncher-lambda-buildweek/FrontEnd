@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logIn } from '../../actions/login';
-import { Form, Button, Input, Title } from '../../globals/styles';
+import { Form, Button, Input, FadeIn } from '../../globals/styles';
 import routes from '../../consts/urls';
 import { getToken } from '../../helpers/localStorage';
 import { Pulse } from 'react-preloading-component';
-
+import { LoginContainer, SideImage } from './loginStyle';
 
 class LogIn extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class LogIn extends React.Component {
       },
     });
   };
-  
+
   login = e => {
     e.preventDefault();
     this.props.logIn(this.state.credentials).then(res => {
@@ -43,9 +43,12 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <div>
-        <Title>Login</Title>
+      <LoginContainer>
+        <SideImage />
         <Form onSubmit={this.login}>
+          <h1>Login</h1>
+
+          <h3>{this.props.error}</h3>
           <Input
             type="text"
             name="email"
@@ -60,9 +63,11 @@ class LogIn extends React.Component {
             onChange={this.handleChanges}
             value={this.state.credentials.password}
           />
-          <Button disabled={this.props.loggingIn}>{this.props.loggingIn && <Pulse />}Log In!</Button>
+          <Button disabled={this.props.loggingIn}>
+            {this.props.loggingIn && <Pulse />}Log In!
+          </Button>
         </Form>
-      </div>
+      </LoginContainer>
     );
   }
 }

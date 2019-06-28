@@ -12,7 +12,7 @@ export const fetchSchools = () => dispatch => {
     .then(res => {
       return dispatch({ type: FETCH_SUCCESS, payload: res.data });
     })
-    .catch(err => dispatch({ type: FAILED, payload: err.message }));
+    .catch(err => dispatch({ type: FAILED, payload: err.response.data.message }));
 };
 
 export const CREATE_SCHOOL_START = 'CREATE_SCHOOL_START';
@@ -26,7 +26,8 @@ export const createSchool = newSchool => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: FAILED, payload: err.message });
+      console.log(err.response.data.message)
+      dispatch({ type: FAILED, payload: err.response.data.message });
     });
 };
 
@@ -41,7 +42,7 @@ export const updateSchool = (updatedSchool, id) => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: FAILED, payload: err.message });
+      dispatch({ type: FAILED, payload: err.response.data.message });
     });
 };
 
@@ -56,7 +57,7 @@ export const deleteSchool = id => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: FAILED, payload: err.message });
+      dispatch({ type: FAILED, payload: err.response.data.message });
     });
 };
 
@@ -71,7 +72,7 @@ export const getSchool = id => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: FAILED, payload: err.message });
+      dispatch({ type: FAILED, payload: err.response.data.message });
     });
 };
 
@@ -88,6 +89,6 @@ export const donate = (id, amount) => dispatch => {
       return true;
     })
     .catch(err => {
-      dispatch({ type: FAILED, payload: err.message });
+      dispatch({ type: FAILED, payload: err.response.data.message});
     });
 };
