@@ -74,7 +74,7 @@ class SignUpForm extends Component {
                 : 'Create a School Admin Account'}
             </Title>
             <Form onSubmit={this.signup}>
-              {this.props.error && <p>{this.props.error}</p>}
+              {this.props.error && <h3>{this.props.error}</h3>}
               <Input
                 name="firstName"
                 placeholder="Firstname"

@@ -46,6 +46,7 @@ class LogIn extends React.Component {
       <div>
         <Title>Login</Title>
         <Form onSubmit={this.login}>
+        <h3>{this.props.error}</h3>
           <Input
             type="text"
             name="email"
