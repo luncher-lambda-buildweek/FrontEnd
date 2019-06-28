@@ -56,7 +56,7 @@ class Schools extends Component {
                     </p>
                   )}
                   {school.email && (
-                    <p>
+                    <p style={{overflow: 'hidden', textOverflow: 'ellipse'}}>
                       Email: <span>{school.email}</span>
                     </p>
                   )}

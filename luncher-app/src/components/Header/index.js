@@ -13,7 +13,7 @@ const Header = props => {
         <h1>Luncher</h1>
       </Link>
       <NavContainer>
-        <NavLink to={routes.home}>Schools</NavLink>
+      <Link to={routes.home}>Schools</Link>
         {!props.isLoggedIn ? (
           <React.Fragment>
             <NavLink to={routes.login}>Log In</NavLink>
@@ -38,7 +38,7 @@ const mapStateToProps = ({ loginReducer }) => {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool,
-  role: PropTypes.string
+  role: PropTypes.string,
 };
 
 export default connect(

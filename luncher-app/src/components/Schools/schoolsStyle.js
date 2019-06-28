@@ -1,24 +1,25 @@
 import styled from 'styled-components';
 import { font } from '../../globals/variables';
-
+import { FadeIn } from '../../globals/styles';
 
 export const SchoolsContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const School = styled.div`
   width: 30%;
-  min-width: 200px;
+  min-width: 280px;
   margin: 12.5px 12px;
   min-height: 430px;
   padding-bottom: 35px;
   border-radius: 3px;
   border: 1px solid gray;
   position: relative;
-  box-shadow: 0px 2px 5px -1px rgba(0,0,0,.30);
+  box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3);
+  ${FadeIn};
 
   @media (max-width: 500px) {
     width: 100%;
